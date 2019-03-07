@@ -15,6 +15,7 @@ def delete(list):
         if list[i] == list[i-1]:
             list.remove(list[i])
     print list
+
 	
 	
 '''
