@@ -12,9 +12,13 @@
 
 解题思路1:两个循环，第一个循环为X，第二个循环为Y，如果x+y=target，则返回x、y的下标
 解题思路2：一个循环x,如果target-x也在nums中，则返回x、target-x的下标
+
+知识点：
+index()：在列表中查找某个元素并输出对应的索引值
 '''
 
 
+'''
 class Solution(object):
     def twoSum(self, nums, target):
         '''
@@ -33,6 +37,26 @@ class Solution(object):
             if m in nums and x != y:
                 print x,y
                 
+这种写法，如果再定义个y变量，有一条测试用例：[3,2,3] ,target=6 无法通过。
+运行到y=nums.index(m)时报错：4这个元素不在list里面。所以换成下面的写法
+'''
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        '''
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+		'''
+        n = len(nums)
+        #x是第一个加数的下标
+        for x in range(n):
+            #m是第二个加数
+            m = target-nums[x]
+            #nums.index(m)是第二个加数的下标
+            #需要排除同一个下标的值相加刚好是target的情况
+            if m in nums and x != nums.index(m):
+                print x,nums.index(m)              
                 
                 
 if __name__ == "__main__":
